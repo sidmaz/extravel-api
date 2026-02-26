@@ -1,0 +1,17 @@
+.idea/
+.vscode/
+/coverage/
+/vendor/
+/logs/*
+!/logs/README.md
+.phpunit.result.cache
+.env
+.env.local
+.env.testing
+.vscode/
+
+*.log
+error_log
+apache_error.log
+nginx_error.log
+
