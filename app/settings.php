@@ -21,6 +21,19 @@ return function (ContainerBuilder $containerBuilder) {
                     'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
                     'level' => Logger::DEBUG,
                 ],
+                // --- ENSURE THIS "jwt" KEY EXISTS HERE ---
+                'jwt' => [
+                    'secret' => 'REPLACE_WITH_A_LONG_RANDOM_STRING', 
+                    'expiry' => 3600,
+                ],
+                // --- ADD YOUR DB SETTINGS HERE ---
+                'db' => [
+                    'host' => 'localhost',
+                    'database' => 'testdb',
+                    'username' => 'root',
+                    'password' => 'root',
+                    'charset' => 'utf8mb4',
+                ],
             ]);
         }
     ]);

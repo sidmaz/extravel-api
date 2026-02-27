@@ -9,6 +9,7 @@ use Monolog\Logger;
 use Monolog\Processor\UidProcessor;
 use Psr\Container\ContainerInterface;
 use Psr\Log\LoggerInterface;
+//use PDO; // Ensure this is imported
 
 return function (ContainerBuilder $containerBuilder) {
     $containerBuilder->addDefinitions([
@@ -26,5 +27,20 @@ return function (ContainerBuilder $containerBuilder) {
 
             return $logger;
         },
+        // ADD THE PDO DEFINITION HERE:
+        /*
+        PDO::class => function (ContainerInterface $c) {
+            $settings = $c->get(SettingsInterface::class);
+            $dbSettings = $settings->get('db'); // Pulls from app/settings.php
+
+            $dsn = "mysql:host={$dbSettings['host']};dbname={$dbSettings['database']};charset={$dbSettings['charset']}";
+            
+            return new PDO($dsn, $dbSettings['username'], $dbSettings['password'], [
+                PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES   => false,
+            ]);
+        },
+        */
     ]);
 };
