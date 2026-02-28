@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use App\Domain\User\UserRepository;
+use App\Domain\Admin\AdminRepository;
 use App\Infrastructure\Persistence\User\InMemoryUserRepository;
 use App\Infrastructure\Persistence\Admin\MySqlAdminRepository;
 use DI\ContainerBuilder;

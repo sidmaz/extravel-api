@@ -74,7 +74,7 @@ $app->addBodyParsingMiddleware();
 
 // Add Error Middleware
 $errorMiddleware = $app->addErrorMiddleware($displayErrorDetails, $logError, $logErrorDetails);
-$errorMiddleware->setDefaultErrorHandler($errorHandler);
+//$errorMiddleware->setDefaultErrorHandler($errorHandler);
 
 // Run App & Emit Response
 $response = $app->handle($request);

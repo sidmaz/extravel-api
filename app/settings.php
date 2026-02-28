@@ -14,12 +14,13 @@ return function (ContainerBuilder $containerBuilder) {
         SettingsInterface::class => function () {
             return new Settings([
                 'displayErrorDetails' => true, // Should be set to false in production
-                'logError'            => false,
-                'logErrorDetails'     => false,
+                'logError'            => true,
+                'logErrorDetails'     => true,
                 'logger' => [
                     'name' => 'slim-app',
-                    'path' => isset($_ENV['docker']) ? 'php://stdout' : __DIR__ . '/../logs/app.log',
-                    'level' => Logger::DEBUG,
+                    // Use realpath to ensure Windows understands the directory
+                    'path' => realpath(__DIR__ . '/../') . DIRECTORY_SEPARATOR . 'logs' . DIRECTORY_SEPARATOR . 'app.log',
+                    'level' => \Monolog\Logger::DEBUG,
                 ],
                 // --- ENSURE THIS "jwt" KEY EXISTS HERE ---
                 'jwt' => [
@@ -28,7 +29,8 @@ return function (ContainerBuilder $containerBuilder) {
                 ],
                 // --- ADD YOUR DB SETTINGS HERE ---
                 'db' => [
-                    'host' => 'localhost',
+                    'host' => '127.0.0.1',
+                    'port' => '3306' ,
                     'database' => 'testdb',
                     'username' => 'root',
                     'password' => 'root',

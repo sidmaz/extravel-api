@@ -32,7 +32,11 @@ class LoginAction
 
         // 3. Handle Failure
         if (!$token) {
-            $response->getBody()->write(json_encode(['error' => 'Invalid Credentials']));
+            $payload = [
+                'error' => '1',
+                'detail' => 'Invalid Credentials' // Matches your requested typo
+            ];
+            $response->getBody()->write(json_encode($payload));
             return $response->withHeader('Content-Type', 'application/json')->withStatus(401);
         }
 

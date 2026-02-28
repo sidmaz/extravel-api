@@ -9,7 +9,7 @@ interface AdminRepository
     /**
      * @return User[]
      */
-    public function findByUsername(string $username): ?array;
+    public function findAdminByUsername(string $username): ?array;
 
     
 }

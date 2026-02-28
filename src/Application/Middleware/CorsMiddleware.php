@@ -16,7 +16,7 @@ class CorsMiddleware
         $response = $handler->handle($request);
 
         return $response
-            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:8080')
+            ->withHeader('Access-Control-Allow-Origin', 'http://localhost:5173')
             ->withHeader('Access-Control-Allow-Headers', 'Content-Type')
             ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
 	    ->withHeader('Access-Control-Allow-Credentials', 'true');

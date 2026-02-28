@@ -28,9 +28,12 @@ class AuthService
      */
     public function authenticate(string $username, string $password): ?string
     {
+        
         // 1. Fetch user from the repository (Infrastructure Layer)
         $user = $this->adminRepository->findAdminByUsername($username);
 
+        //throw new \Exception("DEBUG DATA: Username: $username, Password: $password, password_hash: $user[password_hash]");
+        
         // 2. Business Logic: Is the user active? Does the password match?
         if (!$user || !password_verify($password, $user['password_hash'])) {
             return null;
@@ -38,7 +41,7 @@ class AuthService
 
         // 3. Logic: Prepare the Token Payload
         $payload = [
-            'iss' => 'your-app-name',           // Issuer
+            'iss' => 'extraveladmin',           // Issuer
             'iat' => time(),                    // Issued at
             'exp' => time() + $this->jwtSettings['expiry'], // Expiration
             'sub' => (string) $user['id'],      // Subject (User ID)
